@@ -1,7 +1,27 @@
-1. [Image Synthesis](#image-synthesis)
-2. [Sketch to Image Translation](#sketch-to-image-translation)
-3. [Image Inpainting](#image-inpainting)
-4. [Conditional GANs](#conditional-gans)
+arXiv 
+
+1. [Style Transfer](#style-transfer)
+2. [Image Synthesis](#image-synthesis)
+3. [Sketch to Image Translation](#sketch-to-image-translation)
+4. [Image Inpainting](#image-inpainting)
+5. [Conditional GANs](#conditional-gans)
+
+## Style Transfer
+
+- [Arbitrary Style Transfer in Real-time with Adaptive Instance Normalization](https://arxiv.org/abs/1703.06868)
+
+  ```
+  @misc{huang2017arbitrary,
+      title={Arbitrary Style Transfer in Real-time with Adaptive Instance Normalization},
+      author={Xun Huang and Serge Belongie},
+      year={2017},
+      eprint={1703.06868},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+  }
+  ```
+
+  
 
 ## Image Synthesis
 
@@ -210,3 +230,4 @@
   ```
 
   
+
