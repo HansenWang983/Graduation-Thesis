@@ -1,13 +1,29 @@
 # Graduation Thesis (Design)
- Backup for undergraduate thesis (design) of 2020 B.E.SE@SYSU
+ Backup for undergraduate thesis (design) of 2020 B.E.SE@SYSU.
 
 ## On progress
 
-- Perusing relevant papers 
-- Summarizing objective function and generator & discriminator architecture
-- Dataset preparation and pre-trained model 
+- Perusing relevant papers.
+- Summarizing objective function and generator & discriminator architecture.
+- Dataset preparation and pre-trained model.
 
 
+
+## Attention
+
+- unpaired image-to-image translation (CycleGAN)
+- style transfer mapping with unsupervised learning 
+- conditional batch normalization and its variations 
+- ResNet blocks implementation in Keras
+- attention mechanism to make robust to sketches
+
+
+
+## Past Work
+
+- [Reproduction of *Image Generation from Sketch Constraint Using Contextual GAN*](https://github.com/hansenbeast/2019-SYSU-DM/tree/master/Final_Project)
+
+  
 
 ## Bibliography
 

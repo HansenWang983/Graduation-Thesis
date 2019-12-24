@@ -1,3 +1,8 @@
+1. [Image Synthesis](#image-synthesis)
+2. [Sketch to Image Translation](#sketch-to-image-translation)
+3. [Image Inpainting](#image-inpainting)
+4. [Conditional GANs](#conditional-gans)
+
 ## Image Synthesis
 
 - [Face-to-Parameter Translation for Game Character Auto-Creation](https://arxiv.org/abs/1909.01064)
@@ -75,6 +80,22 @@
   }
   ```
 
+
+
+
+- [An Unpaired Sketch-to-Photo Translation Model](https://arxiv.org/abs/1909.08313)
+
+  ```
+  @misc{liu2019unpaired,
+      title={An Unpaired Sketch-to-Photo Translation Model},
+      author={Runtao Liu and Qian Yu and Stella Yu},
+      year={2019},
+      eprint={1909.08313},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+  }
+  ```
+
   
 
 - [Sketch to Image Translation using GANs](https://lisa.fan/Resources/SketchGAN/sketch-image-translation.pdf)
@@ -145,5 +166,47 @@
 
   
 
+- [High-Resolution Image Synthesis and Semantic Manipulation with Conditional GANs](https://arxiv.org/abs/1711.11585)
+
+  ```
+  @misc{wang2017highresolution,
+      title={High-Resolution Image Synthesis and Semantic Manipulation with Conditional GANs},
+      author={Ting-Chun Wang and Ming-Yu Liu and Jun-Yan Zhu and Andrew Tao and Jan Kautz and Bryan Catanzaro},
+      year={2017},
+      eprint={1711.11585},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+  }
+  ```
 
 
+
+- [Least Squares Generative Adversarial Networks](https://arxiv.org/abs/1611.04076)
+
+  ```
+  @misc{mao2016squares,
+      title={Least Squares Generative Adversarial Networks},
+      author={Xudong Mao and Qing Li and Haoran Xie and Raymond Y. K. Lau and Zhen Wang and Stephen Paul Smolley},
+      year={2016},
+      eprint={1611.04076},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+  }
+  ```
+
+  
+
+- [Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks](https://arxiv.org/abs/1703.10593)
+
+  ```
+  @misc{zhu2017unpaired,
+      title={Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks},
+      author={Jun-Yan Zhu and Taesung Park and Phillip Isola and Alexei A. Efros},
+      year={2017},
+      eprint={1703.10593},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+  }
+  ```
+
+  
