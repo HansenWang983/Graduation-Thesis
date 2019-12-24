@@ -11,11 +11,17 @@
 
 ## Attention
 
-- unpaired image-to-image translation (CycleGAN)
-- style transfer mapping with unsupervised learning 
+- unpaired sketch-to-image translation with unsupervised learning  (CycleGAN) 
+
 - conditional batch normalization and its variations 
+
 - ResNet blocks implementation in Keras
+
 - attention mechanism to make robust to sketches
+
+- data augmentation to deal with drawing style variations by randomly applying noise strokes on original sketches
+
+  
 
 
 

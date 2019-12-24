@@ -2,8 +2,11 @@
 
 ### 第三周
 
-- 基于条件 GAN 的手绘图到卡通图片生成，生成器使用 Unet 结构，相比简单的 encoder-decoder 网络在卷积时会损失较多的信息，Unet 可以通过 concatenate 即保存了一定的 sketch 信息，也保存训练得到的 color 信息。同时除了对抗损失外，增加更多种类的 loss，比如 feature loss 和  total variation loss（保证前景颜色和背景颜色不会发生较多的波动）
-- 提出了一种创新的规范化方法用于 segmentation mask 到 photo 的生成，保证在输入 mask 的 label 较少的情况下不会因 BN 造成信息丢失，仍然可以产生和 label 区域一样的自然图片。
+- 基于条件 GAN 的手绘图到卡通图片生成：
+  - 生成器使用 Unet 结构，相比简单的 encoder-decoder 网络在卷积时会损失较多的信息，Unet 可以通过 concatenate 即保存了一定的 sketch 信息，也保存训练得到的 color 信息。
+  - 除了对抗损失外，增加更多种类的 loss，比如 feature loss 和  total variation loss（保证前景颜色和背景颜色不会发生较多的波动）
+- SPADE：
+  - 提出了一种新的规范化方法用于 segmentation mask 到 photo 的生成，保证在输入 mask 的 label 较少的情况下不会因 BN 造成信息丢失，仍然可以产生和 label 区域一样的自然图片。
 
 
 
@@ -18,6 +21,6 @@
 ### 第五周
 
 - 尝试完成一类 sketch 转换的实验：
-  - [下载 ShoeV2 dataset](http://sketchx.eecs.qmul.ac.uk/downloads.html)
+  - [下载 ShoeV2 dataset](https://www.eecs.qmul.ac.uk/~qian/Project_cvpr16.html)
   - 构建并运行 Keras 版本的 CycleGAN 
 
