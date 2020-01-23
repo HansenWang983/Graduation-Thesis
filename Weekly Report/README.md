@@ -24,3 +24,34 @@
   - [下载 ShoeV2 dataset](https://www.eecs.qmul.ac.uk/~qian/Project_cvpr16.html)
   - 构建并运行 Keras 版本的 CycleGAN 
 
+
+
+### 第六周
+
+- 数据预处理：
+  - ShoeV2 数据集 svg 转 png
+  - 划分训练集和测试集
+  - 调整图片大小
+  - 数据导入
+
+
+
+### 第七周
+
+- CycleGAN Keras 实现第一部分：
+  - 生成器
+  - 判别器
+  - 组合模型
+
+
+
+### 第八周
+
+- CycleGAN Keras 实现第二部分：
+  - 训练
+  - 测试
+
+
+
+
+

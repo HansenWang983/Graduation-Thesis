@@ -1,4 +1,4 @@
-# CycleGAN Keras Implementation
+# CycleGAN Keras Implementation (Part 1)
 
 ## CycleGAN Architechture
 
@@ -34,89 +34,126 @@ Summary of the generator model
 __________________________________________________________________________________________________
 Layer (type)                    Output Shape         Param #     Connected to                     
 ==================================================================================================
-input_3 (InputLayer)            (None, 128, 128, 1)  0                                            
+input_4 (InputLayer)            (None, 128, 128, 1)  0                                            
 __________________________________________________________________________________________________
-conv2d_6 (Conv2D)               (None, 128, 128, 64) 3200        input_3[0][0]                    
+conv2d_22 (Conv2D)              (None, 128, 128, 64) 3200        input_4[0][0]                    
 __________________________________________________________________________________________________
-instance_normalization_4 (Insta (None, 128, 128, 64) 128         conv2d_6[0][0]                   
+instance_normalization_22 (Inst (None, 128, 128, 64) 128         conv2d_22[0][0]                  
 __________________________________________________________________________________________________
-activation_1 (Activation)       (None, 128, 128, 64) 0           instance_normalization_4[0][0]   
+activation_13 (Activation)      (None, 128, 128, 64) 0           instance_normalization_22[0][0]  
 __________________________________________________________________________________________________
-conv2d_7 (Conv2D)               (None, 64, 64, 128)  73856       activation_1[0][0]               
+conv2d_23 (Conv2D)              (None, 64, 64, 128)  73856       activation_13[0][0]              
 __________________________________________________________________________________________________
-instance_normalization_5 (Insta (None, 64, 64, 128)  256         conv2d_7[0][0]                   
+instance_normalization_23 (Inst (None, 64, 64, 128)  256         conv2d_23[0][0]                  
 __________________________________________________________________________________________________
-activation_2 (Activation)       (None, 64, 64, 128)  0           instance_normalization_5[0][0]   
+activation_14 (Activation)      (None, 64, 64, 128)  0           instance_normalization_23[0][0]  
 __________________________________________________________________________________________________
-conv2d_8 (Conv2D)               (None, 32, 32, 256)  295168      activation_2[0][0]               
+conv2d_24 (Conv2D)              (None, 32, 32, 256)  295168      activation_14[0][0]              
 __________________________________________________________________________________________________
-instance_normalization_6 (Insta (None, 32, 32, 256)  512         conv2d_8[0][0]                   
+instance_normalization_24 (Inst (None, 32, 32, 256)  512         conv2d_24[0][0]                  
 __________________________________________________________________________________________________
-activation_3 (Activation)       (None, 32, 32, 256)  0           instance_normalization_6[0][0]   
+activation_15 (Activation)      (None, 32, 32, 256)  0           instance_normalization_24[0][0]  
 __________________________________________________________________________________________________
-conv2d_10 (Conv2D)              (None, 32, 32, 256)  590080      activation_3[0][0]               
+conv2d_25 (Conv2D)              (None, 32, 32, 256)  590080      activation_15[0][0]              
 __________________________________________________________________________________________________
-instance_normalization_8 (Insta (None, 32, 32, 256)  512         conv2d_10[0][0]                  
+instance_normalization_25 (Inst (None, 32, 32, 256)  512         conv2d_25[0][0]                  
 __________________________________________________________________________________________________
-concatenate_1 (Concatenate)     (None, 32, 32, 512)  0           instance_normalization_8[0][0]   
-                                                                 activation_3[0][0]               
+activation_16 (Activation)      (None, 32, 32, 256)  0           instance_normalization_25[0][0]  
 __________________________________________________________________________________________________
-conv2d_12 (Conv2D)              (None, 32, 32, 256)  1179904     concatenate_1[0][0]              
+conv2d_26 (Conv2D)              (None, 32, 32, 256)  590080      activation_16[0][0]              
 __________________________________________________________________________________________________
-instance_normalization_10 (Inst (None, 32, 32, 256)  512         conv2d_12[0][0]                  
+instance_normalization_26 (Inst (None, 32, 32, 256)  512         conv2d_26[0][0]                  
 __________________________________________________________________________________________________
-concatenate_2 (Concatenate)     (None, 32, 32, 768)  0           instance_normalization_10[0][0]  
-                                                                 concatenate_1[0][0]              
+concatenate_7 (Concatenate)     (None, 32, 32, 512)  0           instance_normalization_26[0][0]  
+                                                                 activation_15[0][0]              
 __________________________________________________________________________________________________
-conv2d_14 (Conv2D)              (None, 32, 32, 256)  1769728     concatenate_2[0][0]              
+conv2d_27 (Conv2D)              (None, 32, 32, 256)  1179904     concatenate_7[0][0]              
 __________________________________________________________________________________________________
-instance_normalization_12 (Inst (None, 32, 32, 256)  512         conv2d_14[0][0]                  
+instance_normalization_27 (Inst (None, 32, 32, 256)  512         conv2d_27[0][0]                  
 __________________________________________________________________________________________________
-concatenate_3 (Concatenate)     (None, 32, 32, 1024) 0           instance_normalization_12[0][0]  
-                                                                 concatenate_2[0][0]              
+activation_17 (Activation)      (None, 32, 32, 256)  0           instance_normalization_27[0][0]  
 __________________________________________________________________________________________________
-conv2d_16 (Conv2D)              (None, 32, 32, 256)  2359552     concatenate_3[0][0]              
+conv2d_28 (Conv2D)              (None, 32, 32, 256)  590080      activation_17[0][0]              
 __________________________________________________________________________________________________
-instance_normalization_14 (Inst (None, 32, 32, 256)  512         conv2d_16[0][0]                  
+instance_normalization_28 (Inst (None, 32, 32, 256)  512         conv2d_28[0][0]                  
 __________________________________________________________________________________________________
-concatenate_4 (Concatenate)     (None, 32, 32, 1280) 0           instance_normalization_14[0][0]  
-                                                                 concatenate_3[0][0]              
+concatenate_8 (Concatenate)     (None, 32, 32, 768)  0           instance_normalization_28[0][0]  
+                                                                 concatenate_7[0][0]              
 __________________________________________________________________________________________________
-conv2d_18 (Conv2D)              (None, 32, 32, 256)  2949376     concatenate_4[0][0]              
+conv2d_29 (Conv2D)              (None, 32, 32, 256)  1769728     concatenate_8[0][0]              
 __________________________________________________________________________________________________
-instance_normalization_16 (Inst (None, 32, 32, 256)  512         conv2d_18[0][0]                  
+instance_normalization_29 (Inst (None, 32, 32, 256)  512         conv2d_29[0][0]                  
 __________________________________________________________________________________________________
-concatenate_5 (Concatenate)     (None, 32, 32, 1536) 0           instance_normalization_16[0][0]  
-                                                                 concatenate_4[0][0]              
+activation_18 (Activation)      (None, 32, 32, 256)  0           instance_normalization_29[0][0]  
 __________________________________________________________________________________________________
-conv2d_20 (Conv2D)              (None, 32, 32, 256)  3539200     concatenate_5[0][0]              
+conv2d_30 (Conv2D)              (None, 32, 32, 256)  590080      activation_18[0][0]              
 __________________________________________________________________________________________________
-instance_normalization_18 (Inst (None, 32, 32, 256)  512         conv2d_20[0][0]                  
+instance_normalization_30 (Inst (None, 32, 32, 256)  512         conv2d_30[0][0]                  
 __________________________________________________________________________________________________
-concatenate_6 (Concatenate)     (None, 32, 32, 1792) 0           instance_normalization_18[0][0]  
-                                                                 concatenate_5[0][0]              
+concatenate_9 (Concatenate)     (None, 32, 32, 1024) 0           instance_normalization_30[0][0]  
+                                                                 concatenate_8[0][0]              
 __________________________________________________________________________________________________
-conv2d_transpose_1 (Conv2DTrans (None, 64, 64, 128)  2064512     concatenate_6[0][0]              
+conv2d_31 (Conv2D)              (None, 32, 32, 256)  2359552     concatenate_9[0][0]              
 __________________________________________________________________________________________________
-instance_normalization_19 (Inst (None, 64, 64, 128)  256         conv2d_transpose_1[0][0]         
+instance_normalization_31 (Inst (None, 32, 32, 256)  512         conv2d_31[0][0]                  
 __________________________________________________________________________________________________
-activation_10 (Activation)      (None, 64, 64, 128)  0           instance_normalization_19[0][0]  
+activation_19 (Activation)      (None, 32, 32, 256)  0           instance_normalization_31[0][0]  
 __________________________________________________________________________________________________
-conv2d_transpose_2 (Conv2DTrans (None, 128, 128, 64) 73792       activation_10[0][0]              
+conv2d_32 (Conv2D)              (None, 32, 32, 256)  590080      activation_19[0][0]              
 __________________________________________________________________________________________________
-instance_normalization_20 (Inst (None, 128, 128, 64) 128         conv2d_transpose_2[0][0]         
+instance_normalization_32 (Inst (None, 32, 32, 256)  512         conv2d_32[0][0]                  
 __________________________________________________________________________________________________
-activation_11 (Activation)      (None, 128, 128, 64) 0           instance_normalization_20[0][0]  
+concatenate_10 (Concatenate)    (None, 32, 32, 1280) 0           instance_normalization_32[0][0]  
+                                                                 concatenate_9[0][0]              
 __________________________________________________________________________________________________
-conv2d_21 (Conv2D)              (None, 128, 128, 1)  3137        activation_11[0][0]              
+conv2d_33 (Conv2D)              (None, 32, 32, 256)  2949376     concatenate_10[0][0]             
 __________________________________________________________________________________________________
-instance_normalization_21 (Inst (None, 128, 128, 1)  2           conv2d_21[0][0]                  
+instance_normalization_33 (Inst (None, 32, 32, 256)  512         conv2d_33[0][0]                  
 __________________________________________________________________________________________________
-activation_12 (Activation)      (None, 128, 128, 1)  0           instance_normalization_21[0][0]  
+activation_20 (Activation)      (None, 32, 32, 256)  0           instance_normalization_33[0][0]  
+__________________________________________________________________________________________________
+conv2d_34 (Conv2D)              (None, 32, 32, 256)  590080      activation_20[0][0]              
+__________________________________________________________________________________________________
+instance_normalization_34 (Inst (None, 32, 32, 256)  512         conv2d_34[0][0]                  
+__________________________________________________________________________________________________
+concatenate_11 (Concatenate)    (None, 32, 32, 1536) 0           instance_normalization_34[0][0]  
+                                                                 concatenate_10[0][0]             
+__________________________________________________________________________________________________
+conv2d_35 (Conv2D)              (None, 32, 32, 256)  3539200     concatenate_11[0][0]             
+__________________________________________________________________________________________________
+instance_normalization_35 (Inst (None, 32, 32, 256)  512         conv2d_35[0][0]                  
+__________________________________________________________________________________________________
+activation_21 (Activation)      (None, 32, 32, 256)  0           instance_normalization_35[0][0]  
+__________________________________________________________________________________________________
+conv2d_36 (Conv2D)              (None, 32, 32, 256)  590080      activation_21[0][0]              
+__________________________________________________________________________________________________
+instance_normalization_36 (Inst (None, 32, 32, 256)  512         conv2d_36[0][0]                  
+__________________________________________________________________________________________________
+concatenate_12 (Concatenate)    (None, 32, 32, 1792) 0           instance_normalization_36[0][0]  
+                                                                 concatenate_11[0][0]             
+__________________________________________________________________________________________________
+conv2d_transpose_3 (Conv2DTrans (None, 64, 64, 128)  2064512     concatenate_12[0][0]             
+__________________________________________________________________________________________________
+instance_normalization_37 (Inst (None, 64, 64, 128)  256         conv2d_transpose_3[0][0]         
+__________________________________________________________________________________________________
+activation_22 (Activation)      (None, 64, 64, 128)  0           instance_normalization_37[0][0]  
+__________________________________________________________________________________________________
+conv2d_transpose_4 (Conv2DTrans (None, 128, 128, 64) 73792       activation_22[0][0]              
+__________________________________________________________________________________________________
+instance_normalization_38 (Inst (None, 128, 128	, 64) 128         conv2d_transpose_4[0][0]         
+__________________________________________________________________________________________________
+activation_23 (Activation)      (None, 128, 128, 64) 0           instance_normalization_38[0][0]  
+__________________________________________________________________________________________________
+conv2d_37 (Conv2D)              (None, 128, 128, 1)  3137        activation_23[0][0]              
+__________________________________________________________________________________________________
+instance_normalization_39 (Inst (None, 128, 128, 1)  2           conv2d_37[0][0]                  
+__________________________________________________________________________________________________
+activation_24 (Activation)      (None, 128, 128, 1)  0           instance_normalization_39[0][0]  
 ==================================================================================================
-Total params: 14,905,859
-Trainable params: 14,905,859
+Total params: 18,449,411
+Trainable params: 18,449,411
 Non-trainable params: 0
+__________________________________________________________________________________________________
 ```
 
 The plot of the generator model is also created, showing the skip connections in the ResNet blocks.
@@ -144,6 +181,8 @@ C64-C128-C256-C512
 **Specificlly, using leaky ReLUs with a slope of 0.2 for the first C64 layer, instead of using InstanceNorm. Note that the final hidden layer C512 is with a [1×1 stride](https://machinelearningmastery.com/padding-and-stride-for-convolutional-neural-networks/), and an output layer C1, also with a 1×1 stride.**
 
 For the 128×128 images were used as input, then the size of the output feature map of activations would be 16×16.
+
+Summary of the discriminator model
 
 ```python
 _________________________________________________________________
@@ -186,11 +225,68 @@ Non-trainable params: 0
 
 
 
-## Least Squares Loss (L2)
+## Composite Models 
 
-> *we replace the negative log likelihood objective by a least-squares loss. This loss is more stable during training and generates higher quality results.*
->
-> — [Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks](https://arxiv.org/abs/1703.10593), 2017.
+The generator models are not updated directly. Instead, the generator models are updated via composite models. A composite model is required for each generator model that is responsible for only updating the weights of that generator model, although it is required to share the weights with the related discriminator model and the other generator model. This can be achieved by marking the weights of the other models as not trainable in the context of the composite model to ensure we are only updating the intended generator.
 
 
+
+**Generator-G Composite Model**
+
+Only Generator-G weights are trainable and weights for other models and not trainable.
+
+- **Adversarial Loss**: Domain-X -> Generator-G -> Domain-Y -> Discriminator-Y -> [real/fake]
+
+  > *we replace the negative log likelihood objective by a least-squares loss. This loss is more stable during training and generates higher quality results.*
+  >
+  > — [Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks](https://arxiv.org/abs/1703.10593), 2017.
+
+- **Forward Cycle Loss**: Domain-X -> Generator-G -> Domain-Y -> Generator-F -> Domain-X
+
+- **Backward Cycle Loss**: Domain-Y -> Generator-F -> Domain-X -> Generator-G -> Domain-Y
+
+  The adversarial loss defines here is L2 or mean square loss, while the forward and backward cycle loss are L1 or mean alsolute loss
+
+  
+
+**Generator-F Composite Model**
+
+Only Generator-F weights are trainable and weights for other models and not trainable.
+
+- **Adversarial Loss**: Domain-Y -> Generator-F -> Domain-X -> Discriminator-X -> [real/fake]
+- **Forward Cycle Loss**: Domain-Y -> Generator-F -> Domain-X -> Generator-G -> Domain-Y
+- **Backward Cycle Loss**: Domain-X -> Generator-G -> Domain-Y -> Generator-F -> Domain-X
+
+
+
+**Instead of defining two composite model to train two generators respectively, I combined them into only one model which takes two real images in different domains as input and outputs the two different discriminator classification results, two reconstructed images to compute forward & backward cycle-consistency.**
+
+Summary of the composite model
+
+```python
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+input_42 (InputLayer)           (None, 128, 128, 1)  0                                            
+__________________________________________________________________________________________________
+input_43 (InputLayer)           (None, 128, 128, 1)  0                                            
+__________________________________________________________________________________________________
+G (Model)                       (None, 128, 128, 1)  18449411    input_42[0][0]                   
+                                                                 F[1][0]                          
+__________________________________________________________________________________________________
+F (Model)                       (None, 128, 128, 1)  18449411    input_43[0][0]                   
+                                                                 G[1][0]                          
+__________________________________________________________________________________________________
+D_y (Model)                     (None, 16, 16, 1)    2764481     G[1][0]                          
+__________________________________________________________________________________________________
+D_x (Model)                     (None, 16, 16, 1)    2764481     F[1][0]                          
+==================================================================================================
+Total params: 42,427,784
+Trainable params: 36,898,822
+Non-trainable params: 5,528,962
+```
+
+![composite_model_plot](Assets/7/composite_model_plot.png)
+
+------
 
