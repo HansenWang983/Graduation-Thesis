@@ -53,6 +53,115 @@ with open('../ShoeV2_F/sketch_train.txt') as f:
 
 
 
-## Resize to 128*128 
+## Resize image to 128*128 
 
-## Load data 
+In order to make image following the input shape of generator and discriminator, we can randomly choose height and width offset to clip the image.
+
+```python
+def read_image(self, img_path):
+    img = Image.open(img_path).convert('RGB')
+    img = img.resize((self.loadsize, self.loadsize), Image.BICUBIC)
+    img = np.array(img)
+    assert img.shape == (self.loadsize, self.loadsize, 3)
+    img = img.astype(np.float32)
+    img = (img - 127.5) / 127.5
+    # random jitter
+    w_offset = h_offset = randint(0, max(0, self.loadsize - self.imagesize - 1))
+    img = img[h_offset:h_offset + self.imagesize, w_offset:w_offset + self.imagesize, :]
+    # horizontal flip
+    if randint(0, 1):
+      img = img[:, ::-1]
+      return img
+```
+
+
+
+## Load training data 
+
+Implement the generator of batch data that has shape of (batch_size, 128, 128, 1) 
+
+```python
+def load_data(self):
+    # configure traning dataset path
+    train_A = glob.glob(self.dpath+'trainA/*')
+    train_B = glob.glob(self.dpath+'trainB/*')
+
+    self.n_batches = int(min(len(train_A), len(train_B)) / self.batch_size)
+    total_samples = self.n_batches * self.batch_size
+
+    # Sample n_batches * batch_size from each path list so that model sees all
+    # samples from both domains
+    train_A = np.random.choice(train_A, total_samples, replace=False)
+    train_B = np.random.choice(train_B, total_samples, replace=False)
+
+    for i in range(self.n_batches-1):
+      batch_A = train_A[i*self.batch_size:(i+1)*self.batch_size]
+      batch_B = train_B[i*self.batch_size:(i+1)*self.batch_size]
+      imgs_A, imgs_B = [], []
+      for img_A, img_B in zip(batch_A, batch_B):
+        img_A = self.read_image(img_A)
+        img_B = self.read_image(img_B)
+
+        imgs_A.append(img_A)
+        imgs_B.append(img_B)
+
+        yield np.array(imgs_A), np.array(imgs_B)
+```
+
+
+
+## Save sample image
+
+Use testing dataset to get the sample from the model periodically in the training process and save the sample image. 
+
+```python
+def sample_images(self, epoch, batch_i):
+    os.makedirs('images/%s' % self.dpath, exist_ok = True)
+
+    # configure testing dataset path
+    val_A = glob.glob(self.dpath+'testA/*')
+    val_B = glob.glob(self.dpath+'testB/*')
+
+    val_A = np.random.choice(val_A, size=self.batch_size)
+    val_B = np.random.choice(val_B, size=self.batch_size)
+
+    imgs_A, imgs_B = [], []
+    for i in range(self.batch_size):
+      path_A = val_A[i*self.batch_size:(i+1)*self.batch_size]
+      path_B = val_B[i*self.batch_size:(i+1)*self.batch_size]
+      for img_A, img_B in zip(path_A, path_B):
+        img_A = self.read_image(img_A)
+        img_B = self.read_image(img_B)
+
+        imgs_A.append(img_A)
+        imgs_B.append(img_B)
+
+        imgs_A = np.array(imgs_A)
+        imgs_B = np.array(imgs_B)
+
+        # Translate images to the other domain
+        fake_B = self.G.predict(imgs_A)
+        fake_A = self.F.predict(imgs_B)
+        # Translate back to original domain
+        reconstr_A = self.F.predict(fake_B)
+        reconstr_B = self.G.predict(fake_A)
+
+        gen_imgs = np.concatenate([imgs_A, fake_B, reconstr_A, imgs_B, fake_A, reconstr_B])
+
+        # Rescale images 0 - 1
+        gen_imgs = 0.5 * gen_imgs + 0.5
+
+        titles = ['Original', 'Translated', 'Reconstructed']
+        r, c = 2, 3
+        fig, axs = plt.subplots(r, c)
+        cnt = 0
+        for i in range(r):
+          for j in range(c):
+            axs[i,j].imshow(gen_imgs[cnt])
+            axs[i, j].set_title(titles[j])
+            axs[i,j].axis('off')
+            cnt += 1
+            fig.savefig("images/%s/%d_%d.png" % (self.dpath, epoch, batch_i))
+            plt.close()
+```
+

@@ -229,7 +229,7 @@ Non-trainable params: 0
 
 The generator models are not updated directly. Instead, the generator models are updated via composite models. A composite model is required for each generator model that is responsible for only updating the weights of that generator model, although it is required to share the weights with the related discriminator model and the other generator model. This can be achieved by marking the weights of the other models as not trainable in the context of the composite model to ensure we are only updating the intended generator.
 
-
+We can define two composite models to train the two generator models respectively via adversarial and cycle loss.
 
 **Generator-G Composite Model**
 
